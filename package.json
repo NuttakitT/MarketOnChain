@@ -2,13 +2,14 @@
   "name": "marketonchain",
   "version": "1.0.0",
   "description": "Create a dapp using web3 and truffle",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
     "truffle": "^5.4.15",
     "web3": "^1.6.0"
   }
