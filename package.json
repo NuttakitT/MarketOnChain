@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@truffle/hdwallet-provider": "^1.5.1",
+    "eth-cli": "^2.0.2",
     "express": "^4.17.1",
     "ganache-cli": "^6.12.2",
     "truffle": "^5.4.15",
