@@ -5,29 +5,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MarketOnChain</title>
+    <title>Items</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- <link href="style/index.css" rel="stylesheet"> -->
+
+    <script>
+        var name = "TestItem"
+        window.onload = function () {
+            document.getElementById("test").innerHTML = name;
+        }
+    </script>
+
+
 </head>
 
 <body>
+
+
+
     <header class="border-bottom border-dark">
         <nav class="navbar" style="background-color: white;">
             <div class="container-xxl">
                 <div class="col-9">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="navbar-brand text-dark fs-2" href="../docs/index.html">MarketOnChain</a>
+                            <a class="navbar-brand text-dark fs-2" href="/">MarketOnChain</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active fs-4 text-dark" aria-current="page"
-                                href="../docs/index.html">Home</a>
+                            <a class="nav-link active fs-4 text-dark" aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active fs-4 text-dark" aria-current="page"
-                                href="../docs/market.html">Market</a>
+                            <a class="nav-link active fs-4 text-dark" aria-current="page" href="/market">Market</a>
                         </li>
                     </ul>
                 </div>
@@ -40,27 +49,25 @@
         </nav>
     </header>
     <section class="m-5">
-        <div class="container d-flex align-items-center justify-content-center border border-dark border-3 rounded-3"
-            style="height: 620px;">
+        <div class="container">
             <div class="row">
-                <div class="text-dark fs-1">MarketOnChain</div>
-                <div class="text-dark fs-4">The decentialized web application based on ethererum chain</div>
-                <button type="button" class="btn btn-dark w-auto m-3 text-white">
-                    Login with metamask
-                </button>
+                <div class="col"><img src="" alt="item"></div>
+                <div class="col">
+                    <div class="coantainer">
+                        <h2 class="my-4" id="test"></h2>
+                        <h3 class="my-3">Venfor: </h3>
+                        <h3 class="my-3">Price: </h3>
+                        <form action="" method="post" class="w-50">
+                            <input class="form-control" type="text" id="price" name="price"
+                                placeholder="Enter your price">
+                            <button type="submit" class="btn btn-success btn-lg my-4">Buy</button>
+                            <a href="/market" type="button" class="btn btn-danger btn-lg my-4 mx-3">Back</a>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <footer class="border-top border-dark">
-        <div class="container d-flex align-items-end justify-content-end">
-            <div class="row my-4">
-                <div class="text-dark text-end fs-5">Author: Nuttakit Pliankunthod</div>
-                <div class="text-dark text-end fs-5">This website is for deploy the client site for the MarketOnChain
-                    project</div>
-            </div>
-        </div>
-    </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>

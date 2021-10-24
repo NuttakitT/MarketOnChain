@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "ganache-cli": "^6.12.2",
     "truffle": "^5.4.15",
     "web3": "^1.6.0"
   }
