@@ -10,8 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "@truffle/hdwallet-provider": "^1.5.1",
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.6",
     "eth-cli": "^2.0.2",
     "express": "^4.17.1",
+    "express-validator": "^6.13.0",
     "ganache-cli": "^6.12.2",
     "truffle": "^5.4.15",
     "web3": "^1.6.0"
