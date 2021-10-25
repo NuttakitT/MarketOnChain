@@ -15,23 +15,21 @@ app.listen(3000, () => {
 });
 
 app.get('/', (req, res) => {
-    // res.sendFile(path.join(__dirname, '../templates/index.html'));
+
     res.render("index");
 });
 
 app.get('/market', (req, res) => {
-    // res.sendFile(path.join(__dirname, '../templates/market.html'));
     res.render("market");
 });
 
 app.get('/item', (req, res) => {
-    // res.sendFile(path.join(__dirname, '../templates/item-form.html'));
+
     res.render("item");
 });
 
 app.get('/add', (req, res) => {
     res.render("add");
-    // res.sendFile(path.join(__dirname, '../templates/add.html'));
 });
 
 app.post('/add', [
@@ -40,7 +38,10 @@ app.post('/add', [
 ], (req, res) => {
     const err = validationResult(req);
     if (!err.isEmpty()) {
-        res.sendFile(path.join(__dirname, '../templates/add.html'), { errors: err });
+        res.render("add", { errors: err });
         console.log(err);
+    }
+    else {
+
     }
 });
