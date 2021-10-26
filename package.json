@@ -2,7 +2,7 @@
   "name": "marketonchain",
   "version": "1.0.0",
   "description": "Create a dapp using web3 and truffle",
-  "main": "main.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -22,28 +22,23 @@
     <section class="m-5">
         <div class="container d-flex justify-content-center">
             <div class="row my-3">
-                <div class="col my-2">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Item2</h5>
-                            <p class="card-text">vendor: </p>
-                            <p class="card-text">price: </p>
-                            <a href="/item" class="btn btn-primary">Bid</a>
+                <% if(owner.length == 0) { %>
+                    <h1>There are no any items in the market.</h1>
+                <% } else { %>
+                    <% for(var i = 0; i < owner.length; i++) { %>
+                        <div class="col my-2">
+                            <div class="card" style="width: 18rem;">
+                                <!-- <img src="..." class="card-img-top"> -->
+                                <div class="card-body">
+                                    <h5 class="card-title">Item</h5>
+                                    <p class="card-text">vendor: <%= owner[i] %></p>
+                                    <p class="card-text">price: <%= price[i] %> ETH</p>
+                                    <a href="/item?id=<%= id[i] %>" type="submit" class="btn btn-primary">Buy</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col my-2">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Item3</h5>
-                            <p class="card-text">vendor: </p>
-                            <p class="card-text">price: </p>
-                            <a href="/item" class="btn btn-primary">Bid</a>
-                        </div>
-                    </div>
-                </div>
+                    <% } %>
+                <% } %>
             </div>
         </div>
     </section>
