@@ -23,35 +23,7 @@
 </head>
 
 <body>
-
-
-
-    <header class="border-bottom border-dark">
-        <nav class="navbar" style="background-color: white;">
-            <div class="container-xxl">
-                <div class="col-9">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="navbar-brand text-dark fs-2" href="/">MarketOnChain</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active fs-4 text-dark" aria-current="page" href="/">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active fs-4 text-dark" aria-current="page" href="/market">Market</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active fs-4 text-dark" aria-current="page" href="/add">Add</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-3 d-flex justify-content-end">
-                    <button id="account" type="button" class="btn btn-dark mx-3 text-white">
-                    </button>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <%- include("menu"); %>
     <section class="m-5">
         <div class="container">
             <div class="row">
@@ -64,7 +36,7 @@
                         <form action="" method="post" class="w-50">
                             <input class="form-control" type="text" id="price" name="price"
                                 placeholder="Enter your price">
-                            <button type="submit" class="btn btn-success btn-lg my-4">Buy</button>
+                            <button type="submit" class="btn btn-success btn-lg my-4">Bid</button>
                             <a href="/market" type="button" class="btn btn-danger btn-lg my-4 mx-3">Back</a>
                         </form>
                     </div>

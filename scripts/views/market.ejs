@@ -18,46 +18,10 @@
 </head>
 
 <body>
-    <header class="border-bottom border-dark">
-        <nav class="navbar" style="background-color: white;">
-            <div class="container-xxl">
-                <div class="col-9">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="navbar-brand text-dark fs-2" href="/">MarketOnChain</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active fs-4 text-dark" aria-current="page" href="/">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active fs-4 text-dark" aria-current="page" href="/market">Market</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active fs-4 text-dark" aria-current="page" href="/add">Add</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-3 d-flex justify-content-end">
-                    <button id="account" type="button" class="btn btn-dark mx-3 text-white">
-                    </button>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <%- include("menu"); %>
     <section class="m-5">
         <div class="container d-flex justify-content-center">
             <div class="row my-3">
-                <div class="col my-2">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="No picture">
-                        <div class="card-body">
-                            <h5 class="card-title">Item1</h5>
-                            <p class="card-text">vendor: </p>
-                            <p class="card-text">price: </p>
-                            <a href="/item" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
                 <div class="col my-2">
                     <div class="card" style="width: 18rem;">
                         <img src="..." class="card-img-top">
@@ -65,7 +29,7 @@
                             <h5 class="card-title">Item2</h5>
                             <p class="card-text">vendor: </p>
                             <p class="card-text">price: </p>
-                            <a href="/item" class="btn btn-primary">Go somewhere</a>
+                            <a href="/item" class="btn btn-primary">Bid</a>
                         </div>
                     </div>
                 </div>
@@ -76,7 +40,7 @@
                             <h5 class="card-title">Item3</h5>
                             <p class="card-text">vendor: </p>
                             <p class="card-text">price: </p>
-                            <a href="/item" class="btn btn-primary">Go somewhere</a>
+                            <a href="/item" class="btn btn-primary">Bid</a>
                         </div>
                     </div>
                 </div>

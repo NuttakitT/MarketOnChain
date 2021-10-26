@@ -9,10 +9,12 @@ contract Market {
         uint256 price,
         bool indexed sell
     );
+    uint256 allStuff = 0;
 
     // Create a new event of the item.
     function registedNewStuff(uint256 id, uint256 _price) external {
         emit eventStuff(msg.sender, id, now, _price, true);
+        if(allStuff < id) allStuff = id;
     }
 
     // Craete the new event of the item that set sell to true.

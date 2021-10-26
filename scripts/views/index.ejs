@@ -18,32 +18,7 @@
 </script>
 
 <body>
-    <header class="border-bottom border-dark">
-        <nav class="navbar" style="background-color: white;">
-            <div class="container-xxl">
-                <div class="col-9">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="navbar-brand text-dark fs-2" href="/">MarketOnChain</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active fs-4 text-dark" aria-current="page" href="/">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active fs-4 text-dark" aria-current="page" href="/market">Market</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active fs-4 text-dark" aria-current="page" href="/add">Add</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-3 d-flex justify-content-end">
-                    <button id="account" type="button" class="btn btn-dark mx-3 text-white">
-                    </button>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <%- include("menu"); %>
     <section class="m-5">
         <div class="container d-flex align-items-center justify-content-center border border-dark border-3 rounded-3"
             style="height: 640px;">
@@ -57,7 +32,8 @@
         <div class="container d-flex align-items-end justify-content-end">
             <div class="row my-4">
                 <div class="text-dark text-end fs-5">Author: Nuttakit Pliankunthod</div>
-                <div class="text-dark text-end fs-5">This website is for deploy the client site for the MarketOnChain
+                <div class="text-dark text-end fs-5">This website is for deploy the client site for the
+                    MarketOnChain
                     project</div>
             </div>
         </div>

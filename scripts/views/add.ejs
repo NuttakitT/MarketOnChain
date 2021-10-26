@@ -18,51 +18,27 @@
 </head>
 
 <body>
-    <header class="border-bottom border-dark">
-        <nav class="navbar" style="background-color: white;">
-            <div class="container-xxl">
-                <div class="col-9">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="navbar-brand text-dark fs-2" href="/">MarketOnChain</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active fs-4 text-dark" aria-current="page" href="/">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active fs-4 text-dark" aria-current="page" href="/market">Market</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active fs-4 text-dark" aria-current="page" href="/add">Add</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-3 d-flex justify-content-end">
-                    <button id="account" type="button" class="btn btn-dark mx-3 text-white">
-                    </button>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <%- include("menu"); %>
     <section class="m-5">
+        <% if(errors !=null) { %>
+            <% for(var i=0; i < errors.length; i++) { %>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error!</strong> <%= errors[i].msg %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+            <% } %>
+        <% } %>
         <div class="container d-flex align-items-center justify-content-center border border-dark border-3 rounded-3"
             style="height: 640px;">
-            <!-- <div class="row">
-                <% if(locals.errors) { %>
-                    <% Object.values(errors).forEach(function(err) { %>
-                        <div class="alert alert-danger" role="alert">
-                            <%= err.msg %>
-                        </div>
-                        <% }) %>
-                            <% } %>
-            </div> -->
             <div class="col d-flex justify-content-center">
                 <form action="/add" method="post">
                     <div>
-                        <label for="picture" class="form-label">Add picture</label>
-                        <input class="form-control my-3" type="file" id="picture">
-                        <input class="form-control my-3" type="text" placeholder="itemName" name="itemName">
-                        <input class="form-control my-3" type="text" placeholder="price" name="price">
+                        <!-- <label for="picture" class="form-label">Add picture</label>
+                        <input class="form-control my-3" type="file" id="picture"> -->
+                        <input class="form-control my-3" type="text" placeholder="itemName"
+                            name="itemName">
+                        <input class="form-control my-3" type="text" placeholder="price"
+                            name="price">
                         <button class="btn btn-lg btn-primary me-3" type="submit">Add</button>
                         <button class="btn btn-lg btn-danger mx-3" type="reset">Reset</button>
                     </div>
