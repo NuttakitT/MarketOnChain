@@ -26,7 +26,7 @@ contract Market {
         emit eventStuff(msg.sender, id, now, _price, true);
     }
 
-    // Craete the new event of the item that set sell to true.
+    // Craete the new event of the item that set sell to false.
     function unregistedMyStuff(uint256 id, uint256 _price) external {
         emit eventStuff(msg.sender, id, now, _price, false);
     }
