@@ -3,9 +3,9 @@ pragma solidity ^0.5.0;
 
 contract Market {
     event eventStuff(
-        address owner,
+        address indexed owner,
         uint256 indexed id,
-        uint256 indexed date,
+        uint256 date,
         uint256 price,
         bool indexed sell
     );
@@ -18,7 +18,7 @@ contract Market {
     // Create a new event of the item.
     function registedNewStuff(uint256 id, uint256 _price) external {
         emit eventStuff(msg.sender, id, now, _price, true);
-        if(allStuff <= id) allStuff = id+1;
+        if(allStuff < id) allStuff = id;
     }
 
     // Craete the new event of the item that set sell to true.
