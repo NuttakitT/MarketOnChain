@@ -1,2 +1,2 @@
 # MarketOnChain
- Create a dapp using web3, truffle and express.js
+ Create a decentralized application using web3, truffle and express.js
