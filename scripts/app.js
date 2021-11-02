@@ -63,26 +63,29 @@ async function getData() {
                 event[event.length-1].returnValues.sell);
         }
     }
-    // console.log(item);
 }
 
 async function getDataByAddress(address) {
     item = new Items();
-    var event = await contract.getPastEvents(
-        "eventStuff",
-        {
-            filter: {
-                owner: address,
-            },
-            fromBlock: 0,
-            toBlock: 'latest'
+    var allItem = await contract.methods.getAllStuff().call();
+    for(var i =1; i <= allItem; i++) {
+        var event = await contract.getPastEvents(
+            "eventStuff",
+            {
+                filter: {
+                    id: i,
+                    owner: address,
+                },
+                fromBlock: 0,
+                toBlock: 'latest'
+            }
+        );
+        if(event.length != 0) {
+            item.newItem(event[event.length-1].returnValues.owner,
+                event[event.length-1].returnValues.id,
+                event[event.length-1].returnValues.price,
+                event[event.length-1].returnValues.sell);
         }
-    );
-    for(var i = 0; i < event.length; i++) {
-        item.newItem(event[i].returnValues.owner,
-            event[i].returnValues.id,
-            event[i].returnValues.price,
-            event[i].returnValues.sell);
     }
 }
 
@@ -128,35 +131,39 @@ app.get('/item', async (req, res) => {
     var id = req.query.id;
     await connect("HTTP://127.0.0.1:7545", "../build/contracts/Market.json");
     await getSingleData(id);
-    res.render("item-form", {owner: item.owner[0], price: item.price[0], id: item.id[0]});
+    res.render("item-form", {owner: item.owner[0], price: item.price[0], id: item.id[0], errors: null});
 });
 
-app.post('/item/changeOwner', async (req, res) => {
+app.post('/item/changeOwner', [check("price", "Please enter a item price").not().isEmpty()], 
+async (req, res) => {
+    const err = validationResult(req);
     const owner = req.body.owner;
     const bidPrice = req.body.price;
     const lastPrice  = req.body.lastPrice;
     const id = req.body.id;
-    
-    await connect("HTTP://127.0.0.1:7545", "../build/contracts/Market.json");
-    var balance = await web3.eth.getBalance(accounts[4]);
-    balance = await web3.utils.fromWei(balance, 'ether');
-    // console.log(owner);
-    // console.log(bidPrice);
-    // console.log(lastPrice);
-    // console.log(id);
-    // console.log(balance);
-    if(Number(bidPrice) > Number(balance) || Number(bidPrice) <= Number(lastPrice)) {
-        await getData();
-        res.render("market", {owner: item.owner, price: item.price, id: item.id});
+
+    if(!err.isEmpty()) {
+        await connect("HTTP://127.0.0.1:7545", "../build/contracts/Market.json");
+        await getSingleData(id);
+        res.render("item-form", {owner: owner, price: lastPrice, id: id, errors: err.errors});
     }
     else {
-        await contract.methods.buyStuff(id, bidPrice).send({
-            from: accounts[4],
-            to: owner,
-            value: web3.utils.toWei(bidPrice, 'ether'),
-        });
-        await getData();
-        res.render("market", {owner: item.owner, price: item.price, id: item.id});
+        await connect("HTTP://127.0.0.1:7545", "../build/contracts/Market.json");
+        var balance = await web3.eth.getBalance(accounts[4]);
+        balance = await web3.utils.fromWei(balance, 'ether');
+        if(Number(bidPrice) > Number(balance) || Number(bidPrice) <= Number(lastPrice)) {
+            await getData();
+            res.render("market", {owner: item.owner, price: item.price, id: item.id});
+        }
+        else {
+            await contract.methods.buyStuff(id, bidPrice).send({
+                from: accounts[4],
+                to: owner,
+                value: web3.utils.toWei(bidPrice, 'ether'),
+            });
+            await getData();
+            res.render("market", {owner: item.owner, price: item.price, id: item.id});
+        }
     }
 });
 
@@ -173,9 +180,11 @@ app.post('/add', [
         res.render("add", { errors: err.errors });
     }
     else {
+        const price = req.body.price;
+
         await connect("HTTP://127.0.0.1:7545", "../build/contracts/Market.json");
         var allItem = await contract.methods.getAllStuff().call();
-        await contract.methods.registedNewStuff(Number(allItem)+Number(1), req.body.price).send({
+        await contract.methods.registedNewStuff(Number(allItem)+Number(1), price).send({
             from: accounts[2],
         });
         await getData();
@@ -187,4 +196,38 @@ app.get('/storage', async (req, res) => {
     await connect("HTTP://127.0.0.1:7545", "../build/contracts/Market.json");
     await getDataByAddress(accounts[4]);
     res.render("storage", {id: item.id, price: item.price, sell: item.onSell}); 
+});
+
+app.get('/edit', async (req, res) => {
+    var id = req.query.id;
+    await connect("HTTP://127.0.0.1:7545", "../build/contracts/Market.json");
+    await getSingleData(id);
+    res.render("edit-item", {id: item.id, price: item.price, sell: item.onSell, errors: null}); 
+});
+
+app.post('/editItem', [check("price", "Please enter a item price").not().isEmpty()]
+,async (req, res) => {
+    const err = validationResult(req);
+    if(!err.isEmpty()) {
+        res.render("edit-item", {id: item.id, price: item.price, sell: item.onSell, errors: err.errors}); 
+    }
+    else {
+        const sell = req.body.sell;
+        const price = req.body.price;
+        const id = req.body.id;
+
+        await connect("HTTP://127.0.0.1:7545", "../build/contracts/Market.json");
+        if(sell == "true") {
+            await contract.methods.registedMyStuff(id, price).send({
+                from: accounts[4],
+            });
+        }
+        else {
+            await contract.methods.unregistedMyStuff(id, price).send({
+                from: accounts[4],
+            });
+        }
+        await getDataByAddress(accounts[4]);
+        res.render("storage", {id: item.id, price: item.price, sell: item.onSell}); 
+    }
 });
